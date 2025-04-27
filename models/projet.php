@@ -82,14 +82,5 @@ class Projet
         }
     }
 
-    // --- Suppression ---
-    public function delete($pdo){
-    
-        if ($this->id) }
-        {
-            $stmt = $pdo->prepare("DELETE FROM projets WHERE id = ?");
-            return $stmt->execute([$this->id]);
-        }
-        return false;
-    
+}
 
