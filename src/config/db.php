@@ -1,14 +1,23 @@
 <?php
-$host = 'localhost';
-$dbname = 'animtrack';
-$user = 'root';
-$pass = ''; // ou 'root' selon XAMPP/WAMP
+class Database {
+    private $host = 'mysql';
+    private $db_name = 'gestion_projets';
+    private $username = 'root';
+    private $password = 'root';
+    private $conn;
 
-try {
-    $pdo = new PDO('mysql:host=localhost;dbname=plateforme', 'root', '');
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die('Erreur de connexion à la base de données : ' . $e->getMessage());
+    public function getConnection() {
+        $this->conn = null;
+
+        try {
+            $dsn = "mysql:host={$this->host};dbname={$this->db_name};charset=utf8mb4";
+            $this->conn = new PDO($dsn, $this->username, $this->password);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch(PDOException $exception) {
+            echo "Erreur de connexion : " . $exception->getMessage();
+        }
+
+        return $this->conn;
+    }
 }
 ?>
-
