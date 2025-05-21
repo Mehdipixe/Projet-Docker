@@ -38,6 +38,14 @@
  <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
             <div class="container-fluid">
+                  <li class="nav-item">
+                            <a class="nav-link active" href="index.php">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="taches.php">Salariés</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="projet.php">Projets</
                 
 <h1>📊 Tableau de Bord – Gestion de Projets</h1>
 
