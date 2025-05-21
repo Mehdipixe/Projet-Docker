@@ -1,7 +1,7 @@
 <?php
 include_once 'controllers/EntityControllers.php';
 
-$controller = new Membre();
+$controller = new Membres();
 
 $action = isset($_GET['action']) ? $_GET['action'] : 'index';
 $id = isset($_GET['id']) ? $_GET['id'] : null;
