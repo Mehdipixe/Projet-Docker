@@ -8,7 +8,7 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
             <div class="container-fluid">
-                <a class="navbar-brand" href="index.php">Studio d'animation DM</a>
+                <a class="navbar-brand" href="index.php">Stuido d'Animation DM</a>
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
