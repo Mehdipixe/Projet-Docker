@@ -1,15 +1,3 @@
-<?php
-require_once 'db.php';
-require_once 'EntityControllers.php';
-require_once 'RelatedEntityControllers.php';
-
-// Récupérer les données pour l'affichage rapide
-$projets = EntityControllers::getAllProjets($pdo);
-$taches = EntityControllers::getAllTaches($pdo);
-$membres = EntityControllers::getAllMembres($pdo);
-$livrables = EntityControllers::getAllLivrables($pdo);
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -47,7 +35,10 @@ $livrables = EntityControllers::getAllLivrables($pdo);
     </style>
 </head>
 <body>
-
+ <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+            <div class="container-fluid">
+                
 <h1>📊 Tableau de Bord – Gestion de Projets</h1>
 
 <div class="dashboard">
