@@ -1,5 +1,5 @@
 <?php
-include_once 'config/Database.php';
+include_once 'config/db.php';
 include_once 'models/Projet.php';
 include_once 'models/Membres.php';
 
@@ -9,8 +9,8 @@ class ProjetController {
     private $db;
     
     public function __construct() {
-        $database = new Database();
-        $this->db = $database->getConnection();
+        $db = new Database();
+        $this->db = $db->getConnection();
         $this->projet = new Projet($this->db);
         $this->membre = new Membres($this->db);
     }
