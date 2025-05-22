@@ -1,48 +1,39 @@
 <?php
-require_once 'config/db.php';
-require_once 'models/projet.php';
-require_once 'models/taches.php';
-require_once 'models/membres.php';
-require_once 'classes/livrables.php';
+require_once __DIR__ . '/../config/Database.php';
 
-class RelatedEntityControllers {
-
-    // ================= Lier une Tâche à un Membre =================
-    public static function assignTacheToMembre($pdo, $tacheId, $membreId) {
-        $stmt = $pdo->prepare("UPDATE taches SET membre_id = ? WHERE id = ?");
-        return $stmt->execute([$membreId, $tacheId]);
+class EntityController {
+    public function getAll() {
+        $db = Database::connect();
+        $stmt = $db->query("SELECT * FROM entities");
+        echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
     }
 
-    // ================= Lier une Tâche à un Projet =================
-    public static function assignTacheToProjet($pdo, $tacheId, $projetId) {
-        $stmt = $pdo->prepare("UPDATE taches SET projet_id = ? WHERE id = ?");
-        return $stmt->execute([$projetId, $tacheId]);
+    public function getOne($id) {
+        $db = Database::connect();
+        $stmt = $db->prepare("SELECT * FROM entities WHERE id = ?");
+        $stmt->execute([$id]);
+        echo json_encode($stmt->fetch(PDO::FETCH_ASSOC));
     }
 
-    // ================= Lier un Livrable à un Projet =================
-    public static function assignLivrableToProjet($pdo, $livrableId, $projetId) {
-        $stmt = $pdo->prepare("UPDATE livrables SET projet_id = ? WHERE id = ?");
-        return $stmt->execute([$projetId, $livrableId]);
+    public function create($data) {
+        $db = Database::connect();
+        $stmt = $db->prepare("INSERT INTO entities (nom, description) VALUES (?, ?)");
+        $stmt->execute([$data['nom'], $data['description']]);
+        echo json_encode(['message' => 'Entity créée']);
     }
 
-    // ================= Voir toutes les Tâches d'un Projet =================
-    public static function getTachesByProjet($pdo, $projetId) {
-        $stmt = $pdo->prepare("SELECT * FROM taches WHERE projet_id = ?");
-        $stmt->execute([$projetId]);
-        return $stmt->fetchAll();
+    public function update($id, $data) {
+        $db = Database::connect();
+        $stmt = $db->prepare("UPDATE entities SET nom = ?, description = ? WHERE id = ?");
+        $stmt->execute([$data['nom'], $data['description'], $id]);
+        echo json_encode(['message' => 'Entity mise à jour']);
     }
 
-    // ================= Voir toutes les Tâches d'un Membre =================
-    public static function getTachesByMembre($pdo, $membreId) {
-        $stmt = $pdo->prepare("SELECT * FROM taches WHERE membre_id = ?");
-        $stmt->execute([$membreId]);
-        return $stmt->fetchAll();
-    }
-
-    // ================= Voir tous les Livrables d'un Projet =================
-    public static function getLivrablesByProjet($pdo, $projetId) {
-        $stmt = $pdo->prepare("SELECT * FROM livrables WHERE projet_id = ?");
-        $stmt->execute([$projetId]);
-        return $stmt->fetchAll();
+    public function delete($id) {
+        $db = Database::connect();
+        $stmt = $db->prepare("DELETE FROM entities WHERE id = ?");
+        $stmt->execute([$id]);
+        echo json_encode(['message' => 'Entity supprimée']);
     }
 }
+?>

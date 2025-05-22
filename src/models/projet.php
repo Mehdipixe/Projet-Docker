@@ -4,7 +4,7 @@ class Projet {
     private $table_name = "projets";
     
     public $id;
-    public $salarie_id;
+    public $membre_id;
     public $nom_projet;
     public $objectif;
     public $date_debut;
@@ -49,7 +49,7 @@ class Projet {
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($row) {
-            $this->salarie_id = $row['membres_id'];
+            $this->membre_id = $row['membres_id'];
             $this->nom_projet = $row['nom_projet'];
             $this->objectif = $row['objectif'];
             $this->date_debut = $row['date_debut'];
@@ -66,11 +66,11 @@ class Projet {
         }
 
         $query = "INSERT INTO " . $this->table_name . " 
-                  (salarie_id, nom_projet, objectif, date_debut, date_fin) 
+                  (membre_id, nom_projet, objectif, date_debut, date_fin) 
                   VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($query);
 
-        $stmt->bindParam(1, $this->salarie_id);
+        $stmt->bindParam(1, $this->membre_id);
         $stmt->bindParam(2, $this->nom_projet);
         $stmt->bindParam(3, $this->objectif);
         $stmt->bindParam(4, $this->date_debut);
@@ -92,11 +92,11 @@ class Projet {
         }
 
         $query = "UPDATE " . $this->table_name . " 
-                 SET salarie_id = ?, nom_projet = ?, objectif = ?, date_debut = ?, date_fin = ? 
+                 SET membre_id = ?, nom_projet = ?, objectif = ?, date_debut = ?, date_fin = ? 
                  WHERE id = ?";
         $stmt = $this->conn->prepare($query);
 
-        $stmt->bindParam(1, $this->salarie_id);
+        $stmt->bindParam(1, $this->membre_id);
         $stmt->bindParam(2, $this->nom_projet);
         $stmt->bindParam(3, $this->objectif);
         $stmt->bindParam(4, $this->date_debut);
@@ -124,12 +124,12 @@ class Projet {
         }
     }
 
-    public function readByClient($salarie_id) {
+    public function readByClient($membre_id) {
         $query = "SELECT * FROM " . $this->table_name . " 
                   WHERE salarie_id = ? 
                   ORDER BY date_debut DESC";
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(1, $salarie_id);
+        $stmt->bindParam(1, $membre_id);
         $stmt->execute();
 
         return $stmt;

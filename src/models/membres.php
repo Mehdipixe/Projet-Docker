@@ -1,7 +1,7 @@
 <?php
 class Membre{
     private $conn;
-    private $table_name = "salaries";
+    private $table_name = "membre";
     
     public $id;
     public $nom;
@@ -66,14 +66,14 @@ class Membre{
             $this->id = $this->conn->lastInsertId();
             return true;
         } else {
-            error_log("Erreur SQL (Salarie::create) : " . implode(", ", $stmt->errorInfo()));
+            error_log("Erreur SQL (Membre::create) : " . implode(", ", $stmt->errorInfo()));
             return false;
         }
     }
 
     public function update() {
         if (!$this->isValid()) {
-            error_log("Validation échouée (Salarie::update)");
+            error_log("Validation échouée (Membre::update)");
             return false;
         }
 
@@ -92,7 +92,7 @@ class Membre{
         if ($stmt->execute()) {
             return true;
         } else {
-            error_log("Erreur SQL (Salarie::update) : " . implode(", ", $stmt->errorInfo()));
+            error_log("Erreur SQL (Membre::update) : " . implode(", ", $stmt->errorInfo()));
             return false;
         }
     }
@@ -105,7 +105,7 @@ class Membre{
         if ($stmt->execute()) {
             return true;
         } else {
-            error_log("Erreur SQL (Salarie::delete) : " . implode(", ", $stmt->errorInfo()));
+            error_log("Erreur SQL (Membre::delete) : " . implode(", ", $stmt->errorInfo()));
             return false;
         }
     }
