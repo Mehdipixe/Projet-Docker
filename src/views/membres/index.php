@@ -42,18 +42,18 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach($salaries as $salarie): ?>
+                <?php foreach($membres as $membre): ?>
                 <tr>
-                    <td><?= $salarie['id'] ?></td>
-                    <td><?= $salarie['nom'] ?></td>
-                    <td><?= $salarie['prenom'] ?></td>
-                    <td><?= $salarie['email'] ?></td>
-                    <td><?= $salarie['role'] ?></td>
-                    <td><?= $salarie['date_inscription'] ?></td>
+                    <td><?= $membre['id'] ?></td>
+                    <td><?= $membre['nom'] ?></td>
+                    <td><?= $membre['prenom'] ?></td>
+                    <td><?= $membre['email'] ?></td>
+                    <td><?= $membre['role'] ?></td>
+                    <td><?= $membre['date_inscription'] ?></td>
                     <td>
-                        <a href="salarie.php?action=show&id=<?= $salarie['id'] ?>" class="btn btn-sm btn-info">Voir</a>
-                        <a href="salarie.php?action=edit&id=<?= $salarie['id'] ?>" class="btn btn-sm btn-warning">Modifier</a>
-                        <a href="salarie.php?action=delete&id=<?= $salarie['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Êtes-vous sûr?')">Supprimer</a>
+                        <a href="salarie.php?action=show&id=<?= $membre['id'] ?>" class="btn btn-sm btn-info">Voir</a>
+                        <a href="salarie.php?action=edit&id=<?= $membre['id'] ?>" class="btn btn-sm btn-warning">Modifier</a>
+                        <a href="salarie.php?action=delete&id=<?= $membre['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Êtes-vous sûr?')">Supprimer</a>
                     </td>
                 </tr>
                 <?php endforeach; ?>

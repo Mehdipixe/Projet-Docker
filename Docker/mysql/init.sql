@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS projets (
 --     FOREIGN KEY ('salarie_id') REFERENCES salaries('id')
 -- );
 
--- Insertion de salariés
+-- Insertion de membres
 INSERT INTO membres ('nom', 'prenom', 'email', 'rôle', 'date_inscription') VALUES
 ('Durand', 'Alice', 'alice.durand@email.com', 'Chef de projet', '2024-01-20'),
 ('Petit', 'Marc', 'marc.petit@email.com', 'DevOps', '2024-01-22'),

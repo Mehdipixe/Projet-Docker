@@ -12,7 +12,7 @@ class ProjetController {
         $db = new Database();
         $this->db = $db->getConnection();
         $this->projet = new Projet($this->db);
-        $this->membre = new Membres($this->db);
+        $this->membre = new Membre($this->db);
     }
     
     // Afficher la liste des projets
@@ -25,7 +25,7 @@ class ProjetController {
     // Afficher le formulaire de création
     public function create() {
         // Récupérer la liste des salarés pour le select
-        $stmt = $this->salarie->read();
+        $stmt = $this->membre->read();
         $salaries = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         // Si le formulaire est soumis
@@ -70,7 +70,7 @@ class ProjetController {
         // Si le formulaire est soumis
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Récupérer et valider les données du formulaire
-            $this->projet->salarie_id = htmlspecialchars(strip_tags($_POST['salarie_id']));
+            $this->projet->membre_id = htmlspecialchars(strip_tags($_POST['salarie_id']));
             $this->projet->nom_projet = htmlspecialchars(strip_tags($_POST['nom_projet']));
             $this->projet->objectif = htmlspecialchars(strip_tags($_POST['objectif']));
             $this->projet->date_debut = htmlspecialchars(strip_tags($_POST['date_debut']));

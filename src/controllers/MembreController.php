@@ -24,14 +24,14 @@ class MembreController {
         // Si le formulaire est soumis
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Récupérer et valider les données du formulaire
-            $this->salarie->nom = htmlspecialchars(strip_tags($_POST['nom']));
-            $this->salarie->prenom = htmlspecialchars(strip_tags($_POST['prenom']));
-            $this->salarie->email = htmlspecialchars(strip_tags($_POST['email']));
-            $this->salarie->role = htmlspecialchars(strip_tags($_POST['role']));
-            $this->salarie->date_inscription = htmlspecialchars(strip_tags($_POST['date_inscription']));
+            $this->membre->nom = htmlspecialchars(strip_tags($_POST['nom']));
+            $this->membre->prenom = htmlspecialchars(strip_tags($_POST['prenom']));
+            $this->membre->email = htmlspecialchars(strip_tags($_POST['email']));
+            $this->membre->role = htmlspecialchars(strip_tags($_POST['role']));
+            $this->membre->date_inscription = htmlspecialchars(strip_tags($_POST['date_inscription']));
             
             // Créer le salarié
-            if($this->salarie->create()) {
+            if($this->membre->create()) {
                 header('Location: membre.php');
                 exit;
             } else {
@@ -44,8 +44,8 @@ class MembreController {
     
     // Afficher les détails d'un salarié
     public function show($id) {
-        $this->salarie->id = $id;
-        if($this->salarie->readOne()) {
+        $this->membre->id = $id;
+        if($this->membre->readOne()) {
             include_once 'views/membres/show.php';
         } else {
             echo "Membres non trouvé.";
@@ -85,9 +85,9 @@ class MembreController {
     
     // Supprimer un salarié
     public function delete($id) {
-        $this->salarie->id = $id;
+        $this->membre->id = $id;
         
-        if($this->salarie->delete()) {
+        if($this->membre->delete()) {
             header('Location: membre.php');
             exit;
         } else {

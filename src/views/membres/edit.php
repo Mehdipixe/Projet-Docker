@@ -25,7 +25,7 @@
             </div>
         </nav>
         
-        <h1 class="my-4">Modifier un salarié</h1>
+        <h1 class="my-4">Modifier un membre</h1>
         
         <?php if(isset($error)): ?>
             <div class="alert alert-danger"><?= $error ?></div>

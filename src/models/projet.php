@@ -18,7 +18,7 @@ class Projet {
     }
 
     private function isValid() {
-        return !empty($this->salarie_id) && !empty($this->nom_projet) && !empty($this->objectif)
+        return !empty($this->membre_id) && !empty($this->nom_projet) && !empty($this->objectif)
             && $this->isValidDate($this->date_debut)
             && $this->isValidDate($this->date_fin);
     }
@@ -29,9 +29,9 @@ class Projet {
     }
 
     public function read() {
-        $query = "SELECT c.nom, c.prenom, o.id, o.salarie_id, o.nom_projet, o.objectif, o.date_debut, o.date_fin 
+        $query = "SELECT c.nom, c.prenom, o.id, o.membre_id, o.nom_projet, o.objectif, o.date_debut, o.date_fin 
                   FROM " . $this->table_name . " o
-                  LEFT JOIN membres c ON o.salarie_id = c.id
+                  LEFT JOIN membres c ON o.membre_id = c.id
                   ORDER BY o.date_debut DESC";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
@@ -39,9 +39,9 @@ class Projet {
     }
 
     public function readOne() {
-        $query = "SELECT c.nom, c.prenom, o.id, o.salarie_id, o.nom_projet, o.objectif, o.date_debut, o.date_fin 
+        $query = "SELECT c.nom, c.prenom, o.id, o.membre_id, o.nom_projet, o.objectif, o.date_debut, o.date_fin 
                   FROM " . $this->table_name . " o
-                  LEFT JOIN salaries c ON o.salarie_id = c.id
+                  LEFT JOIN membres c ON o.membre_id = c.id
                   WHERE o.id = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $this->id);
@@ -49,7 +49,7 @@ class Projet {
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($row) {
-            $this->membre_id = $row['membres_id'];
+            $this->membre_id = $row['membre_id'];
             $this->nom_projet = $row['nom_projet'];
             $this->objectif = $row['objectif'];
             $this->date_debut = $row['date_debut'];
