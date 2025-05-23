@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS projets (
     'objectif' VARCHAR(255),
     'date_debut' DATE,
     'date_fin' DATE
-    FOREIGN KEY ('membre_id') REFERENCES salaries('id'),
+    FOREIGN KEY ('membre_id') REFERENCES membres('id'),
 );
 
 
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS projets (
 --     'role' VARCHAR(100),
 --     'date_affectation' DATE,
 --     FOREIGN KEY ('projet_id') REFERENCES projets('id'),
---     FOREIGN KEY ('salarie_id') REFERENCES salaries('id')
+--     FOREIGN KEY ('membre_id') REFERENCES membre('id')
 -- );
 
 -- Insertion de membres
